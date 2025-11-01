@@ -3,6 +3,7 @@ import { ACTIONS } from "@/lib/utils";
 import { useContext, useState } from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { Plus } from "lucide-react";
 
 const CreateTask = () => {
   const [taskItem, setTaskItem] = useState("");
@@ -28,7 +29,12 @@ const CreateTask = () => {
         placeholder="Add a new task..."
         onChange={(e) => setTaskItem(e.target.value)}
       />
-      <Button onClick={createTask}>Click to Add</Button>
+      <Button onClick={createTask} className="max-md:hidden">
+        Click to Add
+      </Button>
+      <Button size="icon" onClick={createTask} className="md:hidden">
+        <Plus />
+      </Button>
     </div>
   );
 };
