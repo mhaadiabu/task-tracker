@@ -1,75 +1,139 @@
-# React + TypeScript + Vite
+# Task Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, full-stack task management application built with React, TypeScript, and PostgreSQL. Features a clean, dark-mode interface for creating, editing, and managing tasks with persistent storage.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ✅ Create, edit, and delete tasks
+- ✅ Mark tasks as complete/incomplete
+- ✅ Dark mode UI with Tailwind CSS
+- ✅ PostgreSQL database with Drizzle ORM
+- ✅ Authentication ready (Better Auth integration)
+- ✅ Responsive design
+- ✅ Type-safe with TypeScript
+- ✅ Modern React 19 with Context API
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+### Frontend
+- **React 19** - UI library
+- **TypeScript** - Type safety
+- **Vite** - Build tool (using Rolldown)
+- **Tailwind CSS 4** - Styling
+- **Radix UI** - Accessible UI components
+- **Lucide React** - Icons
 
-Note: This will impact Vite dev & build performances.
+### Backend/Database
+- **PostgreSQL** - Database
+- **Drizzle ORM** - Type-safe database toolkit
+- **Better Auth** - Authentication library (configured but optional)
 
-## Expanding the ESLint configuration
+## Prerequisites
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Node.js 18+ (or Bun/pnpm)
+- PostgreSQL database
+- pnpm (recommended) or npm
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Getting Started
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 1. Clone the repository
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone <your-repo-url>
+cd task-tracker
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pnpm install
+# or
+npm install
 ```
+
+### 3. Set up environment variables
+
+Create a `.env` file in the root directory:
+
+```env
+DATABASE_URL=postgresql://username:password@localhost:5432/task_tracker
+```
+
+Replace with your PostgreSQL connection string.
+
+### 4. Run database migrations
+
+```bash
+pnpm drizzle-kit push
+# or
+npx drizzle-kit push
+```
+
+### 5. Start the development server
+
+```bash
+pnpm dev
+# or
+npm run dev
+```
+
+The app will be available at `http://localhost:5173`
+
+## Project Structure
+
+```
+task-tracker/
+├── src/
+│   ├── components/      # React components (Tasks, CreateTask, EditTask)
+│   ├── context/         # React Context (TaskContext)
+│   ├── db/              # Database schema and connection
+│   ├── lib/             # Utility functions
+│   ├── App.tsx          # Main application component
+│   └── main.tsx         # Application entry point
+├── drizzle/             # Database migrations
+├── public/              # Static assets
+├── auth.ts              # Better Auth configuration
+├── drizzle.config.ts    # Drizzle ORM configuration
+└── package.json         # Dependencies and scripts
+```
+
+## Available Scripts
+
+- `pnpm dev` - Start development server
+- `pnpm build` - Build for production
+- `pnpm preview` - Preview production build
+- `pnpm lint` - Run ESLint
+
+## Database Schema
+
+The application uses the following main tables:
+- `user` - User accounts
+- `account` - OAuth/credential accounts
+- `session` - User sessions
+- `verification` - Email verification tokens
+
+(Note: Task schema would be defined in `src/db/schema.ts`)
+
+## Authentication
+
+This project includes Better Auth integration for user authentication with email/password support. Authentication is configured but can be enabled/disabled based on your needs.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+MIT
+
+## Acknowledgments
+
+- [Vite](https://vite.dev/) - Next generation frontend tooling
+- [Drizzle ORM](https://orm.drizzle.team/) - TypeScript ORM
+- [Better Auth](https://www.better-auth.com/) - Authentication library
+- [Radix UI](https://www.radix-ui.com/) - Unstyled, accessible components
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
