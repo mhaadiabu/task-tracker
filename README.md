@@ -39,7 +39,7 @@ A modern, full-stack task management application built with React, TypeScript, a
 ### 1. Clone the repository
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/mhaadiabu/task-tracker.git
 cd task-tracker
 ```
 
